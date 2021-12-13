@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="StudentServiceTest" project="Crud_operation" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.atmecs.service.StudentServiceTest" time="1.053" displayname="StudentServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.atmecs.service.StudentServiceTest]">
+    <testcase name="testGetALLStudents" classname="com.atmecs.service.StudentServiceTest" time="1.053" displayname="testGetALLStudents()" uniqueid="[engine:junit-jupiter]/[class:com.atmecs.service.StudentServiceTest]/[method:testGetALLStudents()]"/>
+  </testsuite>
+</testrun>

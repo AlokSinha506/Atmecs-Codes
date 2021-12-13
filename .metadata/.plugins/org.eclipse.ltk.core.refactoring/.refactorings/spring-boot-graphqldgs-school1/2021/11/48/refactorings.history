@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.atmecs.School&apos; to &apos;SchoolInput&apos;&#x0D;&#x0A;- Original project: &apos;spring-boot-graphqldgs-school1&apos;&#x0D;&#x0A;- Original element: &apos;com.atmecs.School&apos;&#x0D;&#x0A;- Renamed element: &apos;com.atmecs.SchoolInput&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;School&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.atmecs{School.java[School" matchStrategy="1" name="SchoolInput" qualified="false" references="true" similarDeclarations="false" stamp="1637902254357" textual="false" version="1.0"/>
+</session>

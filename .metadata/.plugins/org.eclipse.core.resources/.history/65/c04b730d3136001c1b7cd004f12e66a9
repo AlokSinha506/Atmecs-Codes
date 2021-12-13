@@ -1,0 +1,5 @@
+package com.atmecs.repository;
+
+public class TeacherRepository {
+
+}

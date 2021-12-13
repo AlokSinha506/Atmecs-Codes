@@ -1,0 +1,5 @@
+package com.atmecs.student;
+
+public abstract class StudentService {
+
+}

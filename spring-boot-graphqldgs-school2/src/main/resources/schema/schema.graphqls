@@ -1,0 +1,12 @@
+type Mutation {
+    addSchool(input: SchoolInput):School
+}
+
+type SchoolInput {
+   SchoolName: String
+   School_City: String
+   Courses: String
+}
+type School{
+  stars:String
+}

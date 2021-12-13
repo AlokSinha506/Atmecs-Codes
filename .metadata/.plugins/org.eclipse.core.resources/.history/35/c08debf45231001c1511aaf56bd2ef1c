@@ -1,0 +1,13 @@
+package com.atmecs.student;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public abstract class StudentService {
+
+	public List<Student> getALLStudents(){
+		
+	}
+}

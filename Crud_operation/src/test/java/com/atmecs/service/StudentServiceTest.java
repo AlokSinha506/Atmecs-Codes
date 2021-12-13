@@ -1,0 +1,49 @@
+package com.atmecs.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+import com.atmecs.model.Student;
+import com.atmecs.repository.StudentRepository;
+
+
+
+class StudentServiceTest {
+	 @InjectMocks
+	StudentService studentservice;
+	
+    @Mock
+	public StudentRepository studentdao;
+	
+	@BeforeEach
+	void setUp() throws Exception {
+		MockitoAnnotations.initMocks(this);
+	}
+
+	@Test
+	void testGetALLStudents() {
+		List<Student> students=new ArrayList<Student>();
+		Student student =new Student();
+		student.setSid("2");
+		student.setSname("Amar");
+		students.add(student);
+		when(studentdao.findAll()).thenReturn(students);
+		List<Student> s1 = studentservice.getALLStudents();
+		assertNotNull(s1);
+		assertEquals("2",s1.get(0).getSid());
+		
+		
+	}
+	
+
+}

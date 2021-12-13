@@ -1,0 +1,29 @@
+package service;
+
+import java.io.File;
+import java.io.IOException;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Service;
+import graphql.schema.*;
+import graphql.schema.GraphQLSchema;
+
+@Service
+public class GraphQLService {
+
+	@Value("classpath:books.graphql")
+	Resource resource;
+	
+	@PostConstruct
+	public void loadSchema() throws IOException{
+		File schemaFile = resource.getFile();
+		TypeDefinitionRegistry typeRegistry =new SchemaParser().parse(schemaFile);
+		RuntimeWring wiring= buildRuntimeWiring();
+		GraphQLSchema schema=new SchemaGenerator().makeExecuableSchema(typeRegistry,wiring);
+		graphQl = GraphQL.newGraphQL(schema).build();
+	}
+	
+}
