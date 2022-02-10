@@ -21,7 +21,7 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	private Long id;
-	private String empid;
+	private String employeeId;
 	private String name;
 	private String password;
 	private Float rating;

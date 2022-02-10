@@ -13,7 +13,7 @@ import lombok.Setter;
 @Builder
 public class EmployeeRequest {
 	
-	private String empid;
+	private String employeeId;
 	private String name;
 	private String password;
 	private Float rating;

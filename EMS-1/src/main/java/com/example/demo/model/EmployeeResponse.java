@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class EmployeeResponse {
-	private String empid;
+	private String employeeId;
 	private String name;
 	private Float rating;
 	private Long salary;

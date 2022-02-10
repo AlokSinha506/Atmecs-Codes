@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 						.password(employeeRequest.getPassword())
 						.salary(employeeRequest.getSalary())
 						.rating(employeeRequest.getRating())
-						.empid(employeeRequest.getEmpid())
+						.employeeId(employeeRequest.getEmployeeId())
 						.roles(Arrays.asList(role))
 						.build();
 			resp=employeeRepository.save(emp);
@@ -53,7 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 					.password(employeeRequest.getPassword())
 					.salary(employeeRequest.getSalary())
 					.rating(employeeRequest.getRating())
-					.empid(employeeRequest.getEmpid())
+					.employeeId(employeeRequest.getEmployeeId())
 					.roles(Arrays.asList(role1,role2))
 					.build();
 			resp=managerRepository.save(manager);					
@@ -68,14 +68,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 					.password(employeeRequest.getPassword())
 					.salary(employeeRequest.getSalary())
 					.rating(employeeRequest.getRating())
-					.empid(employeeRequest.getEmpid())
+					.employeeId(employeeRequest.getEmployeeId())
 					.roles(Arrays.asList(role4,role5))
 					.build();
 		  resp=hrRepository.save(hr);			
 			break;
 		}
 		return EmployeeResponse.builder()
-				.empid(resp.getEmpid())
+				.employeeId(resp.getEmployeeId())
 				.name(resp.getName())
 				.salary(resp.getSalary())
 				.rating(resp.getRating()).build();

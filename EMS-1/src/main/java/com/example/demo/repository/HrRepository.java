@@ -7,5 +7,5 @@ import com.example.demo.model.Employee;
 import com.example.demo.model.Hr;
 @Repository
 public interface HrRepository extends CrudRepository<Employee, Long>{
-Optional<Hr> findByEmployeeId(String empid);
+Optional<Hr> findByEmployeeId(String employeeId);
 }

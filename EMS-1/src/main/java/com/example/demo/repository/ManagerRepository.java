@@ -8,5 +8,5 @@ import com.example.demo.model.Manager;
 @Repository
 public interface ManagerRepository extends CrudRepository<Employee, Long>{
 	
-   Optional<Manager> findEmployeeById(String empid);
+   Optional<Manager> findEmployeeById(String employeeId);
 }
