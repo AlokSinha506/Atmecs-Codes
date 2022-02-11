@@ -11,6 +11,7 @@ import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
 import com.example.demo.service.EmployeeService;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -22,7 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService {
       HrRepository hrRepository;
 	@Autowired
       RoleRepository roleRepository;
+     @Autowired
      
+   //  PasswordEncoder passwordEncoder;
     // EmployeeType employeeType;
      
      
@@ -33,6 +36,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		case EMPLOYEE:
 			Role role= roleRepository.findByRole("employee")
 				.orElse(Role.builder().role("employee").build());
+			
 			Employee emp = Employee.builder()
 						.name(employeeRequest.getName())
 						.password(employeeRequest.getPassword())
@@ -42,6 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 						.roles(Arrays.asList(role))
 						.build();
 			resp=employeeRepository.save(emp);
+			
 		
 			break;
 		case MANAGER:
@@ -120,7 +125,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	Employee emp1= employeeRepository.findByEmployeeId(employeeId)
 			.orElseThrow( ()-> new NotFoundException("Employee Id does not exist"));
 	
-	Manager man1 =managerRepository.findEmployeeById(managerId)
+	Manager man1 =managerRepository.findByEmployeeId(managerId)
 			.orElseThrow( ()-> new NotFoundException("Manager Id does not exist"));
 	
 	if(man1.getSubordinates()==null) {
@@ -129,6 +134,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		man1.getSubordinates().add(emp1);
 	}
 	managerRepository.save(man1);
+	
 	
 	}
 
@@ -140,70 +146,4 @@ public class EmployeeServiceImpl implements EmployeeService {
 				.orElseThrow( ()-> new NotFoundException("Employee Id does not exist"));
 		employeeRepository.delete(emp);
 	}
-
-
-
-	
-			
-		
-	
-//	@Override
-//	public Employee updateEmployee(Employee employee, long id) {
-//		 Employee existingEmployee= employeeRepository.findById(id).orElseThrow(
-//	    		  ()-> new NotFoundException("Employee","Id",id));
-//		
-//		 
-//		existingEmployee.setName(employee.getName());
-//	    
-//	     existingEmployee.setPassword(employee.getPassword());
-//	     existingEmployee.setRating(employee.getRating());
-//	     existingEmployee.setSalary(employee.getSalary());
-//	     
-//	     employeeRepository.save(existingEmployee);
-//		return existingEmployee;
-//	}
-//
-//	@Override
-//	public void deleteEmployee(long id) {
-//		 employeeRepository.findById(id).orElseThrow(
-//	    		  ()-> new NotFoundException("Employee","Id",id));
-//		 
-//		employeeRepository.deleteById(id);
-//		
-//	}
-//
-//
-//
-//	@Override
-//	public Employee updateRating(Employee employee,long id) {
-//		if(role.equals(employeeType.MANAGER)||(role.equals(employeeType.HR))){
-//			Employee employee1 = employeeRepository.findById(id).get();
-//			employee1.setRating(employee);
-//			employeeRepository.save(employee);
-//		
-//	}
-//	}
-//
-//	@Override
-//	public Employee updateSalary(Employee employee, long id) {
-//		if(role.equals(employeeType.MANAGER)||(role.equals(employeeType.HR))){
-//			Employee employee2 = employeeRepository.findById(id).get();
-//			employee2.setSalary(employee);
-//			employeeRepository.save(employee);
-//			
-//		}
-//	}
-
-
-
-	
-
-
-
-	
-
-
-
-	
-
 }

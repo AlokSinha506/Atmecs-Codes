@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.util.Base64;
+
 import lombok.AllArgsConstructor;
 
 import lombok.Builder;
@@ -20,5 +22,15 @@ public class EmployeeRequest {
 	private String password;
 	private Float rating;
 	private Long salary;
-	private EmployeeType type;
+	private EmployeeType type;  
+	
+	public String encode(String password) {		
+		Base64.Encoder encoder = Base64.getEncoder();
+		byte[] encoded= encoder.encode(password.getBytes());
+		return new String(encoded);
+		
+		 }
+	
+	
+	
 }
