@@ -20,7 +20,7 @@ import lombok.experimental.SuperBuilder;
 public class Employee {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private Long id;
+	private long id;
 	private String employeeId;
 	private String name;
 	private String password;
