@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.*;
@@ -22,7 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService {
       HrRepository hrRepository;
 	@Autowired
       RoleRepository roleRepository;
-     
+
+	@Autowired
+	PasswordEncoder passwordEncoder;
     // EmployeeType employeeType;
      
      
@@ -35,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				.orElse(Role.builder().role("employee").build());
 			Employee emp = Employee.builder()
 						.name(employeeRequest.getName())
-						.password(employeeRequest.getPassword())
+						.password(passwordEncoder.encode(employeeRequest.getPassword()))
 						.salary(employeeRequest.getSalary())
 						.rating(employeeRequest.getRating())
 						.employeeId(employeeRequest.getEmployeeId())
@@ -51,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				   .orElse(Role.builder().role("employee").build());
 			Manager manager= Manager.builder()
 					.name(employeeRequest.getName())
-					.password(employeeRequest.getPassword())
+					.password(passwordEncoder.encode(employeeRequest.getPassword()))
 					.salary(employeeRequest.getSalary())
 					.rating(employeeRequest.getRating())
 					.employeeId(employeeRequest.getEmployeeId())
@@ -67,7 +70,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				   .orElse(Role.builder().role("hr").build());
 		  Hr hr=Hr.builder()
 				  .name(employeeRequest.getName())
-					.password(employeeRequest.getPassword())
+					.password(passwordEncoder.encode(employeeRequest.getPassword()))
 					.salary(employeeRequest.getSalary())
 					.rating(employeeRequest.getRating())
 					.employeeId(employeeRequest.getEmployeeId())
