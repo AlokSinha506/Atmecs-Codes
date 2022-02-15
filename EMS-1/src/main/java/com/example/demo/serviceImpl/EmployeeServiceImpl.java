@@ -2,7 +2,7 @@ package com.example.demo.serviceImpl;
 
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,12 +75,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 					.build();
 		  resp=hrRepository.save(hr);			
 			break;
-		}
+		}if(Objects.nonNull(resp))
 		return EmployeeResponse.builder()
 				.employeeId(resp.getEmployeeId())
 				.name(resp.getName())
 				.salary(resp.getSalary())
 				.rating(resp.getRating()).build();
+		return new EmployeeResponse();
 	}
 
 	
