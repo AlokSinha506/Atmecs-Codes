@@ -1,0 +1,35 @@
+package com.example.demo.external;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import reactor.core.publisher.Mono;
+
+public class WebClientConfig {
+
+
+	
+	
+
+	@Bean
+	public WebClient.Builder getWebClientBuilder(){
+		return WebClient.builder();
+	}
+}
+	//@Bean
+//	public WebClient xxx {
+//		return WebClient.builder()
+//				.clientConnector()
+//				.clientConnector(reactorClientHttpConnector())
+//				.baseUrl().build();
+//	}
+//	private WebClient xxx;
+//	String clientResponse =
+//						contentStorageClient
+//								.post()
+//								.uri(uriBuilder -> uriBuilder.path("/api/employee/{employeeId}").build())
+//								.retrieve()
+//								.bodyToMono(EmployeePasswordResponse.class)
+//								.block();
+//				return this.saveAnswerContentResponse(clientResponse);
+//}

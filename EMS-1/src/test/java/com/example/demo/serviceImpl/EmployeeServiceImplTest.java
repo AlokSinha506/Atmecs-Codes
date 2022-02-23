@@ -74,7 +74,7 @@ class EmployeeServiceImplTest {
 		employeeRequest.setSalary(5678l);
 		employeeRequest.setType(EmployeeType.EMPLOYEE);
 		Role role = roleRepository.findByRole("employee").orElse(Role.builder().role("employee").build());
-		Employee emp = Employee.builder().name(employeeRequest.getName()).password(employeeRequest.getPassword())
+		Employee emp = Employee.builder().name(employeeRequest.getName())//.password(employeeRequest.getPassword())
 				.salary(employeeRequest.getSalary()).rating(employeeRequest.getRating())
 				.employeeId(employeeRequest.getEmployeeId()).roles(Arrays.asList(role)).build();
 		when(employeeRepository.save(emp)).thenReturn(emp);
@@ -94,7 +94,7 @@ class EmployeeServiceImplTest {
 		employeeRequest.setSalary(3456l);
 		employeeRequest.setType(EmployeeType.MANAGER);
 		Role role = roleRepository.findByRole("manager").orElse(Role.builder().role("manager").build());
-		Manager manager = Manager.builder().name(employeeRequest.getName()).password(employeeRequest.getPassword())
+		Manager manager = Manager.builder().name(employeeRequest.getName())//.password(employeeRequest.getPassword())
 				.salary(employeeRequest.getSalary()).rating(employeeRequest.getRating())
 				.employeeId(employeeRequest.getEmployeeId()).roles(Arrays.asList(role)).build();
 		when(employeeRepository.save(manager)).thenReturn(manager);
@@ -114,7 +114,7 @@ class EmployeeServiceImplTest {
 		employeeRequest.setSalary(4325l);
 		employeeRequest.setType(EmployeeType.HR);
 		Role role = roleRepository.findByRole("hr").orElse(Role.builder().role("hr").build());
-		Hr hr = Hr.builder().name(employeeRequest.getName()).password(employeeRequest.getPassword())
+		Hr hr = Hr.builder().name(employeeRequest.getName())//.password(employeeRequest.getPassword())
 				.salary(employeeRequest.getSalary()).rating(employeeRequest.getRating())
 				.employeeId(employeeRequest.getEmployeeId()).roles(Arrays.asList(role)).build();
 		when(employeeRepository.save(hr)).thenReturn(hr);

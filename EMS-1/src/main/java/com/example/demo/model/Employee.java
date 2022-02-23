@@ -23,7 +23,7 @@ public class Employee {
 	private Long id;
 	private String employeeId;
 	private String name;
-	private String password;
+	//private String password;
 	private Float rating;
 	private Long salary;
 	
