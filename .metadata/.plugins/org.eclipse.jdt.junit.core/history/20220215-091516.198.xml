@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="EmployeeServiceImplTest" project="EMS-1" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="com.example.demo.serviceImpl.EmployeeServiceImplTest" time="1.366" displayname="EmployeeServiceImplTest" uniqueid="[engine:junit-jupiter]/[class:com.example.demo.serviceImpl.EmployeeServiceImplTest]">
-    <testcase name="updateRatingTest1" classname="com.example.demo.serviceImpl.EmployeeServiceImplTest" time="1.335" displayname="updateRatingTest1()" uniqueid="[engine:junit-jupiter]/[class:com.example.demo.serviceImpl.EmployeeServiceImplTest]/[method:updateRatingTest1()]"/>
-    <testcase name="updateRatingTest" classname="com.example.demo.serviceImpl.EmployeeServiceImplTest" time="0.029" displayname="updateRatingTest()" uniqueid="[engine:junit-jupiter]/[class:com.example.demo.serviceImpl.EmployeeServiceImplTest]/[method:updateRatingTest()]"/>
-  </testsuite>
-</testrun>

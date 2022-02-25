@@ -1,0 +1,12 @@
+package com.example.demo.service;
+
+import org.springframework.http.HttpStatus;
+
+import com.example.demo.model.EmployeePasswordResponse;
+
+public interface EmployeeService {
+String generateRandomPassword(String employeeId,String userName);
+	
+    EmployeePasswordResponse buildSuccessResponse(HttpStatus statusCode, Object employee);
+
+}
