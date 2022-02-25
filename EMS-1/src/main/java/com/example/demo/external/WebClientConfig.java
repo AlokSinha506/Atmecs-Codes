@@ -1,20 +1,26 @@
 package com.example.demo.external;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.example.demo.model.EmployeeRequest;
+
 import reactor.core.publisher.Mono;
-
-public class WebClientConfig {
-
-
-	
-	
-
-	@Bean
-	public WebClient.Builder getWebClientBuilder(){
-		return WebClient.builder();
-	}
+@Component
+public class WebClientConfig {	
+	      
+	@Autowired
+	WebClient webClient;
+     String Password = webClient
+  		                      .post()
+  		                      .uri("/api/employee/{employeeId}")
+  		                      .retrieve()
+  		                      .bodyToFlux(EmployeeRequest.class)
+  		                      .filter(employee ->{
+  		                    	  employee.getPassword();
+  		                      })
 }
 	//@Bean
 //	public WebClient xxx {

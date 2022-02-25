@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.reactive.function.client.WebClient;
 
 
 @Configuration
@@ -17,13 +18,17 @@ public class configuration extends WebSecurityConfigurerAdapter{
 	PasswordEncoder passwordEncoder() {
 	return new BCryptPasswordEncoder();
 }
-	protected void configure(HttpSecurity http) throws Exception {
-		
-		http
-		      .authorizeRequests()
-		      .anyRequest()
-		      .authenticated()
-		      .and()
-		      .httpBasic();
+	@Bean
+    WebClient webClient(){
+		return WebClient.create("http://localhost:8081");
 	}
+//	protected void configure(HttpSecurity http) throws Exception {
+//		
+//		http
+//		      .authorizeRequests()
+//		      .anyRequest()
+//		      .authenticated()
+//		      .and()
+//		      .httpBasic();
+//	}
 }
