@@ -1,7 +1,0 @@
-package com.atmecs.repository;
-
-import org.jooq.impl.DAOImpl;
-
-public class StudentRepository extends DAOImpl<student_database, sid, String> {
-
-}

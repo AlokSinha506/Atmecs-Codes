@@ -4,6 +4,7 @@ public class SchoolInput {
 	private String School_Name;
 	private String School_City;
 	private String Courses;
+	public float getCourses;
 	public String getSchool_Name() {
 		return School_Name;
 	}

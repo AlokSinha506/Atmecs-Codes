@@ -1,0 +1,14 @@
+package com.example.demo.confurigation;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.example.demo.servicempl.EmployeeServiceImpl;
+
+
+public class confurigation {
+      @Bean
+	public EmployeeServiceImpl employeeServiceImpl(){
+		return new EmployeeServiceImpl();
+	}
+}

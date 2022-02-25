@@ -1,5 +1,6 @@
 type Mutation {
     addSchool(input: SchoolInput):School
+    deleteSchool(input: SchoolInput):School
 }
 
 type SchoolInput {

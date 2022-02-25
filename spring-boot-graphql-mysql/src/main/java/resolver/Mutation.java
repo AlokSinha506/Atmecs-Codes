@@ -2,10 +2,13 @@ package resolver;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import graphql.kickstart.tools.GraphQLMutationResolver;
+import com.coxautodev.graphql.tools.GraphQLResolver;
+
+
 import javassist.NotFoundException;
 import model.Author;
 import model.Tutorial;
@@ -13,7 +16,7 @@ import repository.AuthorRepository;
 import repository.TutorialRepository;
 
 @Component
-public class Mutation implements GraphQLMutationResolver{
+public class Mutation implements GraphQLResolver{
 	 private AuthorRepository authorRepository;
 	  private TutorialRepository tutorialRepository;
 

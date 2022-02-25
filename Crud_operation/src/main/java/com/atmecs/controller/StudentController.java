@@ -28,7 +28,7 @@ public class StudentController {
     public void addstudent(@RequestBody Student student) {
     	studentservice.addStudent(student);
     }
-    @RequestMapping(method= RequestMethod.PUT, value="/students/{id}")
+    @RequestMapping(method= RequestMethod.PUT, value="/students/{sid}")
     public void updatestudent(@PathVariable String sid,@RequestBody Student student) {
     	studentservice.updateStudent(sid,student);
     }

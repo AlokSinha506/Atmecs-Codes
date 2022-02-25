@@ -1,15 +1,18 @@
 package resolver;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
 
-import graphql.kickstart.tools.GraphQLQueryResolver;
+import com.coxautodev.graphql.tools.GraphQLResolver;
+
+
 import model.Author;
 import model.Tutorial;
 import repository.AuthorRepository;
 import repository.TutorialRepository;
 @Component
-public class Query implements GraphQLQueryResolver{
+public class Query implements GraphQLResolver{
 	  private AuthorRepository authorRepository;
 	  private TutorialRepository tutorialRepository;
 
