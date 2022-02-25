@@ -1,0 +1,17 @@
+type Query{
+     getSchool: School
+ }
+ type Mutation {
+    addSchool(input: SchoolInput):School
+    deleteSchool:School
+    updateSchool:School
+}
+
+type SchoolInput {
+   SchoolName: String
+   School_City: String
+   Courses: String
+}
+type School{
+  stars:String
+}

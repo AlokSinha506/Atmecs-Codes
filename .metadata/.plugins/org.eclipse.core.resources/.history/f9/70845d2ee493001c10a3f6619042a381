@@ -1,0 +1,36 @@
+package com.example.demo.external;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import reactor.core.publisher.Mono;
+
+public class WebClientConfig {
+
+
+	
+	
+
+//	@Bean
+	public WebClient.Builder getWebClientBuilder(){
+		return WebClient.builder();
+	}
+	//@Bean
+//	public WebClient contentStorageClient() {
+//		return WebClient.builder()
+//				.clientConnector(null)
+//				.clientConnector(reactorClientHttpConnector(appConfigs.getCSSApiConnectionTimeOut(),
+//						appConfigs.getCSSApiReadTimeOut(),
+//						appConfigs.getCSSApiWriteTimeOut()))
+//				.baseUrl(appConfigs.getContentStorageBaseUrl()).build();
+//	}
+//	private WebClient contentStorageClient;
+//	String clientResponse =
+//						contentStorageClient
+//								.post()
+//								.uri(uriBuilder -> uriBuilder.path("/api/employee/{employeeId}").build())
+//								.retrieve()
+//								.bodyToMono(EmployeePasswordResponse.class)
+//								.block();
+//				return this.saveAnswerContentResponse(clientResponse);
+//}

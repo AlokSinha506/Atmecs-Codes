@@ -1,0 +1,12 @@
+package com.example.demo.model;
+
+import javax.persistence.DiscriminatorValue;
+
+import javax.persistence.Entity;
+
+import lombok.Builder;
+@Entity
+@DiscriminatorValue(value="hr")
+public class Hr extends Employee {
+
+}

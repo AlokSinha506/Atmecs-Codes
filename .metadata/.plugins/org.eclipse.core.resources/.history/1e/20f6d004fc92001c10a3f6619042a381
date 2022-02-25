@@ -1,0 +1,7 @@
+package com.example.demo.reposiory;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserDetails extends CrudRepository<employeeId, String>{
+
+}

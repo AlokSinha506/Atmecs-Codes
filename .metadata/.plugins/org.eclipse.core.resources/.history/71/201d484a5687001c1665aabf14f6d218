@@ -1,0 +1,85 @@
+package com.example.demo.servicempl;
+
+import java.util.ArrayList;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import com.example.demo.model.Employee;
+import com.example.demo.model.EmployeeType;
+import com.example.demo.model.Role;
+import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.repository.HrRepository;
+import com.example.demo.repository.ManagerRepository;
+import com.example.demo.service.EmployeeService;
+@Service
+public class EmployeeServiceImpl implements EmployeeService{
+	
+    @Autowired
+	private static  EmployeeRepository employeeRepository;
+    private ManagerRepository managerRepository;
+    private HrRepository hrRepository;
+	public static List<Employee> getALLEmployees() {
+		List<Employee> employee=new ArrayList<>();	
+		employeeRepository.findAll().forEach(employee::add);
+		return employee;
+	}
+
+	@Override
+	public Object getEmployeeById(long employeeId) {
+		return employeeRepository.findById(employeeId);
+		}
+	
+
+	public Employee addEmployee(Employee employee,long id) {
+		 Optional<Employee> employeeRole= employeeRepository.findById(id);
+			if(employeeRole.get().getRoles().equals(EmployeeType.MANAGER))
+				return managerRepository.save(employee);
+			if(employeeRole.get().getRoles().equals(EmployeeType.HR))
+				return hrRepository.save(employee);
+		return employeeRepository.save(employee);
+		
+	}
+
+	public void updateEmployee(Long id, Employee employee) {
+		employeeRepository.save(employee);
+		
+	}
+
+	public void deleteEmployee(Long id) {
+		employeeRepository.deleteById(id);
+		
+	}
+
+	public Employee updateEmployeeRole(Employee employee, long id) {
+		 Optional<Employee> employeeRole= employeeRepository.findById(id);
+		if(employeeRole.get().getRoles().equals(EmployeeType.MANAGER))
+			return managerRepository.save(employee);
+		if(employeeRole.get().getRoles().equals(EmployeeType.HR))
+			return hrRepository.save(employee);
+		return employee;
+					
+	
+	}
+
+	@Override
+	public void addEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+
+	
+	
+
+	
+	}
+
+

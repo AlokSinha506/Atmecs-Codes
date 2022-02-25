@@ -1,0 +1,46 @@
+package com.example.demo.servicempl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.Employee;
+import com.example.demo.service.EmployeeService;
+@Service
+public class EmployeeServiceImpl implements EmployeeService{
+
+	public static List<Employee> getALLEmployees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getEmployeeById(long employeeId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void addEmployee(Employee employee) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void updateEmployee(String id, Employee employee) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteEmployee(String id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+	
+
+	
+	}
+
+

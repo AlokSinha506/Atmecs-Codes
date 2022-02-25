@@ -1,0 +1,30 @@
+package com.example.demo.service;
+
+import java.security.SecureRandom;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class NewPasswordService {
+	
+	 public static String generateRandomPassword(String employeeId,String userName)
+	    {
+	        // ASCII range – alphanumeric (0-9, a-z, A-Z)
+	        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	 
+	        SecureRandom random = new SecureRandom();
+	        String Password= UUID.randomUUID().toString();
+	        // each iteration of the loop randomly chooses a character from the given
+	        // ASCII range and appends it to the `StringBuilder` instance
+	        return IntStream.range(0, 10)
+	                .map(i -> random.nextInt(chars.length()))
+	                .mapToObj(randomIndex -> String.valueOf(chars.charAt(randomIndex)))
+	                .collect(Collectors.joining());
+	    }
+
+	public void getAllInfo(String employeeId) {
+		// TODO Auto-generated method stub
+		
+	}
+	 
+}

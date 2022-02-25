@@ -1,0 +1,26 @@
+package com.example.demo.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.example.demo.model.Employee;
+
+public interface EmployeeService 
+{
+	
+	static List<Employee> getALLEmployees(List<Employee> employee) {
+		return employee;
+	}
+	Object getEmployeeById(long employeeId);
+		
+	void addEmployee(Employee employee);
+	
+	void updateEmployee(Iterable<Long> id, Employee employee);
+	
+	 void deleteEmployee(long id);
+	 
+	void updateSalary(long id, Map<Object, Object> salary);
+	
+	
+	
+}

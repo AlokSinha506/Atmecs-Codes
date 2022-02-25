@@ -1,0 +1,215 @@
+package com.example.demo.serviceImpl;
+
+import static org.mockito.Mockito.when;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.example.demo.exception.NotFoundException;
+import com.example.demo.model.Employee;
+import com.example.demo.model.EmployeeRequest;
+import com.example.demo.model.EmployeeResponse;
+import com.example.demo.model.EmployeeType;
+import com.example.demo.model.Hr;
+import com.example.demo.model.Manager;
+import com.example.demo.model.Role;
+import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.repository.HrRepository;
+import com.example.demo.repository.ManagerRepository;
+import com.example.demo.repository.RoleRepository;
+
+
+
+public class EmployeeServiceImplTest {
+
+	@InjectMocks 
+	EmployeeServiceImpl employeeServiceImpl;
+    @Mock
+	EmployeeRepository employeeRepository;
+	@Mock
+	ManagerRepository managerRepository;
+	@Mock
+	HrRepository hrRepository;
+	@Mock
+    RoleRepository roleRepository;
+    @Mock
+    PasswordEncoder passwordEncoder;
+    @Mock
+    Employee employee;
+    @Mock
+    Manager manager;
+	EmployeeResponse empResponse;
+	@BeforeEach
+	void setUp() throws Exception{
+		MockitoAnnotations.initMocks(this);
+		}
+
+	// @Test
+     final void saveEmployeeTest() {
+         
+		EmployeeRequest employeeRequest= new EmployeeRequest();
+		employeeRequest.setEmployeeId("123");
+		employeeRequest.setName("Alok");
+		employeeRequest.setPassword("Asinha");
+		employeeRequest.setRating(4.5f);
+		employeeRequest.setSalary(5678l);
+		employeeRequest.setType(EmployeeType.EMPLOYEE);
+		Role role= roleRepository.findByRole("employee")
+				.orElse(Role.builder().role("employee").build());
+		Employee emp = Employee.builder()
+				.name(employeeRequest.getName())
+				.password(employeeRequest.getPassword())
+				.salary(employeeRequest.getSalary())
+				.rating(employeeRequest.getRating())
+				.employeeId(employeeRequest.getEmployeeId())
+				.roles(Arrays.asList(role))
+				.build();
+		 when(employeeRepository.save(emp)).thenReturn(new Employee());	  
+		 EmployeeResponse response = employeeServiceImpl.saveEmployee(employeeRequest);
+				Assertions.assertNotNull(response);
+	 }			 
+	 @Test
+     final void saveEmployeeTest1() {
+         
+		EmployeeRequest employeeRequest= new EmployeeRequest();
+		employeeRequest.setEmployeeId("345");
+		employeeRequest.setName("Aman");
+		employeeRequest.setPassword("Aman@123");
+		employeeRequest.setRating(4.4f);
+		employeeRequest.setSalary(3456l);
+		employeeRequest.setType(EmployeeType.MANAGER);
+		Role role= roleRepository.findByRole("manager")
+				.orElse(Role.builder().role("manager").build());
+		Manager manager= Manager.builder()
+				.name(employeeRequest.getName())
+				.password(employeeRequest.getPassword())
+				.salary(employeeRequest.getSalary())
+				.rating(employeeRequest.getRating())
+				.employeeId(employeeRequest.getEmployeeId())
+				.roles(Arrays.asList(role))
+				.build();
+		 when(managerRepository.save(manager)).thenReturn(manager);	  
+		 EmployeeResponse response = employeeServiceImpl.saveEmployee(employeeRequest);
+		 Assertions.assertNotNull(response);
+	 }			
+	 
+	 @Test
+     final void saveEmployeeTest2() {
+         
+		EmployeeRequest employeeRequest= new EmployeeRequest();
+		employeeRequest.setEmployeeId("567");
+		employeeRequest.setName("Ajay");
+		employeeRequest.setPassword("Ajay@123");
+		employeeRequest.setRating(3.4f);
+		employeeRequest.setSalary(4325l);
+		employeeRequest.setType(EmployeeType.HR);
+		Role role= roleRepository.findByRole("hr")
+				.orElse(Role.builder().role("hr").build());
+		Hr hr=Hr.builder()
+				.name(employeeRequest.getName())
+				.password(employeeRequest.getPassword())
+				.salary(employeeRequest.getSalary())
+				.rating(employeeRequest.getRating())
+				.employeeId(employeeRequest.getEmployeeId())
+				.roles(Arrays.asList(role))
+				.build();
+		 when(hrRepository.save(hr)).thenReturn(hr);	  
+		 EmployeeResponse response = employeeServiceImpl.saveEmployee(employeeRequest);
+		 Assertions.assertNotNull(response);
+	 }			
+//	 
+//	 Getting employee by id when employee is present
+	 @Test
+	    public void getEmployeeByIdTest() throws NotFoundException  {
+//		Employee employee= new Employee();
+//		employee.setName("Anuj");
+//		employee.setRating(7.9f);
+//		employee.setSalary(8768l);
+//		employee.setEmployeeId("123");
+			when(employeeRepository.findByEmployeeId("123")).thenReturn((Optional.of(employee)));
+			when(employee.getEmployeeId()).thenReturn("123");
+			EmployeeResponse response= employeeServiceImpl.getEmployeeById("123");
+			//assertEquals(123, response.getEmployeeId());
+			Assertions.assertNotNull(response);
+	 }
+      // negative case(employee not present)
+    @Test
+      public void getEmployeeByIdTest1() {
+    	
+ 		Assertions.assertThrows(NotFoundException.class, ()->employeeServiceImpl.getEmployeeById("123"));
+ 		
+    	  
+       }
+    //update rating when employee is present
+    @Test
+    public void updateRatingTest() throws NotFoundException {
+    	when(employeeRepository.findByEmployeeId("234")).thenReturn((Optional.of(employee)));
+    	 employeeServiceImpl.updateRating("234", 5f);
+    	when(employee.getRating()).thenReturn(5f);
+    	Assertions.assertEquals(5f,employee.getRating());    	
+    }
+    //employee is not present
+    @Test
+    public void updateRatingTest1() {
+    	Assertions.assertThrows(NotFoundException.class, ()->employeeServiceImpl.updateRating("345", 5f));
+    }
+    //update salary when employee is present
+    @Test
+    public void updateSalaryTest() throws NotFoundException {
+    	when(employeeRepository.findByEmployeeId("678")).thenReturn((Optional.of(employee)));
+    	 employeeServiceImpl.updateSalary("678", 5678l);
+    	when(employee.getSalary()).thenReturn(5678l);
+    	Assertions.assertEquals(5678l,employee.getSalary());    	
+    }
+    //employee not found exception
+    @Test
+    public void updateSalaryTest1() {
+    	Assertions.assertThrows(NotFoundException.class, ()->employeeServiceImpl.updateSalary("45", 5678l));
+    }
+    //deleting employeee
+    @Test
+    public void deleteEmployee() throws NotFoundException{
+    	when(employeeRepository.findByEmployeeId("45")).thenReturn((Optional.of(employee)));
+    	employeeServiceImpl.deleteEmployee("45");
+    	Assertions.assertEquals(0,0);
+    }
+    
+    //employee not found
+    @Test
+    public void deleteEmployee1() {
+    	Assertions.assertThrows(NotFoundException.class, ()->employeeServiceImpl.deleteEmployee("45"));
+    }
+    // Assigning manager to employee
+    @Test
+    public void assignManager() throws NotFoundException{    	
+    	when(employeeRepository.findByEmployeeId("56")).thenReturn((Optional.of(employee)));
+		when(employee.getEmployeeId()).thenReturn("56");
+		when(managerRepository.findByEmployeeId("78")).thenReturn((Optional.of(manager)));
+		when(manager.getEmployeeId()).thenReturn("78");
+		
+		List<Employee> subordinates= new ArrayList<>();
+		subordinates.add(employee);
+		when(manager.getSubordinates()).thenReturn(subordinates);
+		Assertions.assertNotNull(subordinates);
+    }
+    
+    //manager or employee not present
+    @Test
+    public void assignManager1() {
+    	Assertions.assertThrows(NotFoundException.class, ()->employeeServiceImpl.assignManager("23","56"));
+    }
+    
+    
+    
+    
+}

@@ -1,0 +1,38 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.example.demo.exception.NotFoundException;
+import com.example.demo.model.Employee;
+import com.example.demo.model.EmployeeRequest;
+import com.example.demo.model.EmployeeResponse;
+import com.example.demo.model.Manager;
+
+public interface EmployeeService {
+
+	EmployeeResponse saveEmployee(EmployeeRequest employeeRequest);
+
+	EmployeeResponse getEmployeeById(String employeeId) throws NotFoundException;
+	
+	void updateRating(String employeeId, float rating) throws NotFoundException;
+
+	void updateSalary(String employeeId,long salary) throws NotFoundException;
+	
+	//Assign manager to employees
+	void assignManager(EmployeeRequest employeeRequest,Manager manager);
+//
+//	EmployeeResponse updateEmployee(EmployeeRequest employeeRequest) throws NotFoundException;
+//
+	void deleteEmployee(String employeeId) throws NotFoundException;	
+//
+
+
+	//Assign manager to employees
+
+	
+
+	
+
+}

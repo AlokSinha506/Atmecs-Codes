@@ -1,0 +1,95 @@
+package com.example.demo.servicempl;
+
+import java.util.ArrayList;
+
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import com.example.demo.model.Employee;
+import com.example.demo.model.EmployeeType;
+import com.example.demo.model.Role;
+import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.repository.HrRepository;
+import com.example.demo.repository.ManagerRepository;
+import com.example.demo.service.EmployeeService;
+@Service
+public class EmployeeServiceImpl implements EmployeeService{
+    private EmployeeType employeeType;
+    @Autowired
+	private static  EmployeeRepository employeeRepository;
+    @Autowired
+    private ManagerRepository managerRepository;
+    @Autowired
+    private HrRepository hrRepository;
+	public static List<Employee> getALLEmployees() {
+		List<Employee> employee=new ArrayList<>();	
+		employeeRepository.findAll().forEach(employee::add);
+		return employee;
+	}
+
+	@Override
+	public Object getEmployeeById(long employeeId) {
+		return employeeRepository.findById(employeeId);
+		}
+	
+
+	public void addEmployee(Employee employee) {
+		List<Role> employeeRole=employee.getRoles();
+		if(employeeRole.equals(employeeType.MANAGER)) {
+			managerRepository.save(employee);
+			employeeRepository.save(employee);
+		}
+		if(employeeRole.equals(employeeType.HR)) {
+			hrRepository.save(employee);
+			employeeRepository.save(employee);
+		}else {
+		employeeRepository.save(employee);
+		}
+		
+	    }
+
+	    public void updateEmployee(Iterable<Long> id, Employee employee) {
+	    	  Employee existingEmployee= (Employee) employeeRepository.findAllById(id);
+		     existingEmployee.setName(employee.getName());
+		     existingEmployee.setPassword(employee.getPassword());
+		     existingEmployee.setRating(employee.getRating());
+		     existingEmployee.setSalary(employee.getSalary());
+		     
+		     employeeRepository.save(existingEmployee);
+			
+	    }
+
+	    public void deleteEmployee(long id) {
+		employeeRepository.deleteById(id);	
+	    }
+
+		 public void updateSalary(Iterable<Long> id,Map<Object,Object> salary) {
+	    	  Employee existingEmployee= (Employee) employeeRepository.findAllById(id);
+	
+
+	
+	}
+
+		@Override
+		public void updateSalary(long id, Map<Object, Object> salary) {
+			// TODO Auto-generated method stub
+			
+		}
+
+	
+}
+	
+
+	
+	
+
+	
+
+
+

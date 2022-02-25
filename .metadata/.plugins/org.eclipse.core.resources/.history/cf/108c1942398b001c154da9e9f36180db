@@ -1,0 +1,19 @@
+package com.example.demo.configuration;
+
+import java.util.Base64;
+
+import com.example.demo.model.Employee;
+
+public class SecurityApp {
+	 
+	private Employee employee;
+	 String ep= employee.getPassword();
+	  
+	public static String encode(String ep) {
+	
+	Base64.Encoder encoder = Base64.getEncoder();
+	byte[] encoded= encoder.encode(ep.getBytes());
+	return new String(encoded);
+	
+	 }
+}

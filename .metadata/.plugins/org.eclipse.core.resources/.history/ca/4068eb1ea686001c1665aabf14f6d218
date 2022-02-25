@@ -1,0 +1,14 @@
+package com.example.demo.Impl;
+
+import com.example.demo.service.EmployeeService;
+
+public class EmployeeServiceImpl implements EmployeeService {
+
+	@Override
+	public void fun() {
+		//Bean for db connectivity- data source 
+		//.save .persist
+		
+	}
+
+}

@@ -1,0 +1,157 @@
+package com.example.demo.serviceImpl;
+
+import java.util.Arrays;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.exception.NotFoundException;
+import com.example.demo.model.Employee;
+import com.example.demo.model.EmployeeRequest;
+import com.example.demo.model.EmployeeResponse;
+import com.example.demo.model.Hr;
+import com.example.demo.model.Manager;
+import com.example.demo.model.Role;
+import com.example.demo.repository.EmployeeRepository;
+import com.example.demo.repository.HrRepository;
+import com.example.demo.repository.ManagerRepository;
+import com.example.demo.repository.RoleRepository;
+import com.example.demo.service.EmployeeService;
+
+
+@Service
+public class EmployeeServiceImpl implements EmployeeService {
+	@Autowired
+      EmployeeRepository employeeRepository;
+	@Autowired
+      ManagerRepository managerRepository;
+	@Autowired
+      HrRepository hrRepository;
+	@Autowired
+      RoleRepository roleRepository;
+	@Autowired
+   PasswordEncoder passwordEncoder;
+     
+   //  PasswordEncoder passwordEncoder;
+    // EmployeeType employeeType;
+     
+     
+	@Override
+	public EmployeeResponse saveEmployee(EmployeeRequest employeeRequest) {
+		Employee resp=null;
+		switch(employeeRequest.getType()) {
+		case EMPLOYEE:
+			Role role= roleRepository.findByRole("employee")
+				.orElse(Role.builder().role("employee").build());
+			
+			Employee emp = Employee.builder()
+						.name(employeeRequest.getName())
+						.password((passwordEncoder.encode(employeeRequest.getPassword())))
+						.salary(employeeRequest.getSalary())
+						.rating(employeeRequest.getRating())
+						.employeeId(employeeRequest.getEmployeeId())
+						.roles(Arrays.asList(role))
+						.build();
+			resp=employeeRepository.save(emp);
+			
+		
+			break;
+		case MANAGER:
+			Role role1= roleRepository.findByRole("manager")
+			.orElse(Role.builder().role("manager").build());
+		   Role role2= roleRepository.findByRole("employee")
+				   .orElse(Role.builder().role("employee").build());
+			Manager manager= Manager.builder()
+					.name(employeeRequest.getName())
+					.password((passwordEncoder.encode(employeeRequest.getPassword())))
+					.salary(employeeRequest.getSalary())
+					.rating(employeeRequest.getRating())
+					.employeeId(employeeRequest.getEmployeeId())
+					.roles(Arrays.asList(role1,role2))
+					.build();
+			resp=managerRepository.save(manager);
+			
+			break;
+		case HR:
+		   Role role4= roleRepository.findByRole("employee")
+				   .orElse(Role.builder().role("employee").build());
+		   Role role5= roleRepository.findByRole("hr")
+				   .orElse(Role.builder().role("hr").build());
+		  Hr hr=Hr.builder()
+				  .name(employeeRequest.getName())
+					.password((passwordEncoder.encode(employeeRequest.getPassword())))
+					.salary(employeeRequest.getSalary())
+					.rating(employeeRequest.getRating())
+					.employeeId(employeeRequest.getEmployeeId())
+					.roles(Arrays.asList(role4,role5))
+					.build();
+		  resp=hrRepository.save(hr);			
+			break;
+		}
+		return EmployeeResponse.builder()
+				.employeeId(resp.getEmployeeId())
+				.name(resp.getName())
+				.salary(resp.getSalary())
+				.rating(resp.getRating()).build();
+	}
+
+	
+
+	@Override
+	public EmployeeResponse getEmployeeById(String employeeId) throws NotFoundException {
+		Employee emp = employeeRepository.findByEmployeeId(employeeId)
+				.orElseThrow( ()-> new NotFoundException("Employee Id does not exist"));
+		return EmployeeResponse.builder()
+				.name(emp.getName())
+				.rating(emp.getRating())
+				.employeeId(emp.getEmployeeId())
+				.salary(emp.getSalary()).build();
+	}
+	
+	@Override
+	public void updateRating(String employeeId, float rating) throws NotFoundException {
+		Employee emp = employeeRepository.findByEmployeeId(employeeId)
+				.orElseThrow( ()-> new NotFoundException("Employee Id does not exist"));	   
+		emp.setRating(rating);
+		employeeRepository.save(emp);		
+	}
+	
+	@Override
+	public void updateSalary(String employeeId, long salary) throws NotFoundException {
+		Employee emp = employeeRepository.findByEmployeeId(employeeId)
+				.orElseThrow( ()-> new NotFoundException("Employee Id does not exist"));	   
+		emp.setSalary(salary);
+		employeeRepository.save(emp);		
+	}
+
+
+
+	@Override
+	public void assignManager(String employeeId, String managerId) throws NotFoundException {
+		
+	Employee emp1= employeeRepository.findByEmployeeId(employeeId)
+			.orElseThrow( ()-> new NotFoundException("Employee Id does not exist"));
+	
+	Manager man1 =managerRepository.findByEmployeeId(managerId)
+			.orElseThrow( ()-> new NotFoundException("Manager Id does not exist"));
+	
+	if(man1.getSubordinates()==null) {
+		man1.setSubordinates(Arrays.asList(emp1));
+	}else {
+		man1.getSubordinates().add(emp1);
+	}
+	managerRepository.save(man1);
+	
+	
+	}
+
+
+
+	@Override
+	public void deleteEmployee(String employeeId)throws NotFoundException {
+		Employee emp = employeeRepository.findByEmployeeId(employeeId)
+				.orElseThrow( ()-> new NotFoundException("Employee Id does not exist"));
+		employeeRepository.delete(emp);
+	}
+}
