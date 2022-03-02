@@ -23,11 +23,9 @@ import com.example.demo.service.EmployeeService;
 public class EmployeeController {
         @Autowired
 		 EmployeeService employeeservice;
-
-//		public EmployeeController(EmployeeService employeeservice) {
-//			super();
-//			this.employeeservice = employeeservice;
-//		}
+        
+        @Autowired
+        WebClientConfig webClientConfig;
       
     		                    
         

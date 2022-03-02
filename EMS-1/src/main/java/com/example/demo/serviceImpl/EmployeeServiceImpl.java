@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.example.demo.exception.NotFoundException;
+import com.example.demo.external.WebClientConfig;
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
 import com.example.demo.service.EmployeeService;
@@ -25,7 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
       RoleRepository roleRepository;
 	@Autowired
 	PasswordEncoder passwordEncoder;
-    // EmployeeType employeeType;
+	@Autowired
+    WebClientConfig webClientConfig;
      
      
 	@Override
@@ -37,6 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				.orElse(Role.builder().role("employee").build());
 			Employee emp = Employee.builder()
 						.name(employeeRequest.getName())
+						.password((passwordEncoder.encode(webClientConfig.getPassword().toString())))
 						//.password((passwordEncoder.encode(employeeRequest.getPassword())))
 						.salary(employeeRequest.getSalary())
 						.rating(employeeRequest.getRating())

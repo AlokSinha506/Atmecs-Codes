@@ -19,9 +19,13 @@ public class configuration extends WebSecurityConfigurerAdapter{
 	return new BCryptPasswordEncoder();
 }
 	@Bean
-    WebClient webClient(){
-		return WebClient.create("http://localhost:8081");
+	public WebClient.Builder getWebClient(){
+		return WebClient.builder();
 	}
+//	@Bean
+//    WebClient webClient(){
+//		return WebClient.create("http://localhost:8081");
+//	}
 //	protected void configure(HttpSecurity http) throws Exception {
 //		
 //		http
