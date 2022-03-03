@@ -6,7 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.example.demo.model.Password;
+
 
 
 @Configuration
@@ -21,10 +21,10 @@ public class configuration {
 		return WebClient.builder();
 	}
 	
-	@Bean
-	public Password password() {
-		return new Password();
-	}
+//	@Bean
+//	public Password password() {
+//		return new Password();
+//	}
 //	@Bean
 //    WebClient webClient(){
 //		return WebClient.create("http://localhost:8081");

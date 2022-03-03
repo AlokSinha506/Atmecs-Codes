@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.serviceImpl.EmployeeServiceImpl;
 @RestController
-@RequestMapping("/password")
+//@RequestMapping("/password")
 public class PasswordApiController {
 	
 	@Autowired
 	EmployeeServiceImpl employeeServiceImpl;
 
-	@GetMapping("/{employeeId}")
-	public ResponseEntity getRandomPassword(@PathVariable("employeeId") String employeeId){
+	@GetMapping("/")
+	public ResponseEntity getRandomPassword(){
 	    return ResponseEntity.ok(employeeServiceImpl.getRandomPassword());
 		
 	}
