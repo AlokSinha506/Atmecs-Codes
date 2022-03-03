@@ -11,8 +11,7 @@ import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.service.EmployeeService;
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
-	@Autowired
-    EmployeeRepository employeeRepository;
+	
 	public String getRandomPassword() {
 		int length =10;
 		String capitalCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

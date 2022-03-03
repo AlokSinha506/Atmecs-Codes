@@ -15,7 +15,7 @@ public class PasswordApiController {
 	EmployeeServiceImpl employeeServiceImpl;
 
 	@GetMapping("/{employeeId}")
-	public ResponseEntity<String> getRandomPassword(@PathVariable("employeeId") String employeeId){
+	public ResponseEntity getRandomPassword(@PathVariable("employeeId") String employeeId){
 	    return ResponseEntity.ok(employeeServiceImpl.getRandomPassword());
 		
 	}

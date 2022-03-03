@@ -19,13 +19,13 @@ public class WebClientConfig {
 	@Autowired
 	Password password;
 	
-	public Password getPassword(){
+	public String getRandomPassword(){
                            return  webClient
     		                  .build()
   		                      .get()
-  		                      .uri("http://localhost:8085/password/+employeeId")
+  		                      .uri("http://localhost:8085/password/employeeId")
   		                      .retrieve()
-  		                      .bodyToMono(Password.class)
+  		                      .bodyToMono(String.class)
   		                      .block();
   		                   
                           }

@@ -39,7 +39,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				.orElse(Role.builder().role("employee").build());
 			Employee emp = Employee.builder()
 						.name(employeeRequest.getName())
-						.password((passwordEncoder.encode(webClientConfig.getPassword().toString())))
+						.password((passwordEncoder.encode(webClientConfig.getRandomPassword())))
 						//.password((passwordEncoder.encode(employeeRequest.getPassword())))
 						.salary(employeeRequest.getSalary())
 						.rating(employeeRequest.getRating())
@@ -56,6 +56,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				   .orElse(Role.builder().role("employee").build());
 			Manager manager= Manager.builder()
 					.name(employeeRequest.getName())
+					.password((passwordEncoder.encode(webClientConfig.getRandomPassword())))
 					//.password((passwordEncoder.encode(employeeRequest.getPassword())))
 					.salary(employeeRequest.getSalary())
 					.rating(employeeRequest.getRating())
@@ -72,6 +73,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 				   .orElse(Role.builder().role("hr").build());
 		  Hr hr=Hr.builder()
 				  .name(employeeRequest.getName())
+				  .password((passwordEncoder.encode(webClientConfig.getRandomPassword())))
 					//.password((passwordEncoder.encode(employeeRequest.getPassword())))
 					.salary(employeeRequest.getSalary())
 					.rating(employeeRequest.getRating())
