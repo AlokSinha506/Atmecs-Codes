@@ -33,8 +33,7 @@ implementation group: 'org.jooq', name: 'jooq-codegen', version: '3.15.4'
         jooqConfig.password = 'password'
         jooqConfig.schema= 'school_database'
         jooqConfig.generatedPackageName = 'com.atmecs.generated'
-        
-    }
+        }    
     
 test {
 	useJUnitPlatform()

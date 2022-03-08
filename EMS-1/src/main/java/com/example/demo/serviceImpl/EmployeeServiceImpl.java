@@ -147,6 +147,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee emp = employeeRepository.findByEmployeeId(employeeId)
 				.orElseThrow( ()-> new NotFoundException("Employee Id does not exist"));
 		employeeRepository.delete(emp);
+		
 	}
 
 

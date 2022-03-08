@@ -23,19 +23,5 @@ public class StudentRepository implements CommandLineRunner {
 		
 	}
 
-	public Iterable<Student> findAll() {
-   
-		return null;
-	}
-
-	public void save(Student student) {
 	
-		
-	}
-
-	public void deleteById(String sid) {
-		
-		
-	}
-
 }
